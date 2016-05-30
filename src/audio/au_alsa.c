@@ -78,6 +78,7 @@ cst_audiodev *audio_open_alsa(unsigned int sps, int channels,
                               cst_audiofmt fmt)
 {
     cst_audiodev *ad;
+    const char *dev_name;
     unsigned int real_rate;
     int err;
 
@@ -92,11 +93,15 @@ cst_audiodev *audio_open_alsa(unsigned int sps, int channels,
     snd_pcm_hw_params_alloca(&hwparams);
 
     /* Open pcm device */
-    err = snd_pcm_open(&pcm_handle, pcm_dev_name, stream, 0);
+    dev_name = getenv("MIMIC_AUDIO_DEVICE");
+    if (dev_name == NULL) {
+        dev_name = pcm_dev_name;
+    }
+    err = snd_pcm_open(&pcm_handle, dev_name, stream, 0);
     if (err < 0)
     {
         cst_errmsg("audio_open_alsa: failed to open audio device %s. %s\n",
-                   pcm_dev_name, snd_strerror(err));
+                   dev_name, snd_strerror(err));
         return NULL;
     }
 
