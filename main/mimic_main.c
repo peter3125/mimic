@@ -169,7 +169,6 @@ static cst_utterance *print_info(cst_utterance *u)
 
     }
     printf("\n");
-
     return u;
 }
 
@@ -223,6 +222,7 @@ int main(int argc, char **argv)
     const char *voicedumpfile = NULL;
     cst_audio_streaming_info *asi;
 
+	setlinebuf(stdout);
     // Set signal handler to shutdown any playing audio on SIGINT
 #ifdef _WIN32
     SetConsoleCtrlHandler(windows_signal_handler, TRUE);
