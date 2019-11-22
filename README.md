@@ -103,12 +103,12 @@ sudo apt-get install gcc make pkg-config automake libtool mingw32 mingw32-runtim
 
 - Clone the repository
   ```
-  $ git clone https://github.com/MycroftAI/mimic.git
+  $ git clone https://github.com/MycroftAI/mimic1.git
   ```
   
 - Navigate to mimic directory
   ```
-  $ cd mimic
+  $ cd mimic1
   ```
 
 - Build and install missing dependencies (pcre2)
